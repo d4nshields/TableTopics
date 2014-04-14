@@ -1,0 +1,152 @@
+@font-face {
+    font-family: 'Back to the future 2002';
+    src: url( BTTF.ttf);
+}
+
+body, .tabletopic-background {
+    background-color: black;
+}
+
+.tabletopic-splash {
+	z-index:1000;
+	width: 96%;
+	height: 96%;
+	position:fixed;
+	top: 2%;
+	left: 2%;
+	background: gray;
+	display: block;
+}
+
+.tabletopic-banner {
+	position:absolute; 
+	top: 30%;
+	width:100%;
+	text-align:center;
+	color: #99cc00;
+	font-size: 4em;
+}
+
+.tabletopic-boilerplate {
+	color: black;
+	margin: 10% auto 10% auto;
+	width: 100%;
+	text-align: left;
+	font-size: 0.25em;
+}
+
+.tabletopic-boilerplate blockquote {
+	border: 6px solid #999999;
+	border-radius: 16px;
+	height: 2em;
+	padding: 1em;
+}
+
+@media (min-height:300px) and (max-height:599px) {
+	body {
+		font-size: 6px;
+	}
+}
+@media (min-height:600px) and (max-height:899px) {
+	body {
+		font-size: 12px;
+	}
+}
+@media (min-height:900px) and (max-height:1199px) {
+	body {
+		font-size: 18px;
+	}
+}
+@media (min-height:1200px) {
+	body {
+		font-size: 24px;
+	}
+}
+
+.tabletopic-message-area, .tabletopic-button-area, .tabletopic-timer-area {
+    text-align: center;
+    min-height: 13em;
+}
+
+/* ----------------------------- MESSAGE AREA ------------------------- */
+.tabletopic-message-area {
+    border-radius: 16px;
+    border: 8px solid #222222;
+    margin: 1em;
+}
+.tabletopic-message {
+    font-size: 2em;
+    text-align:center;
+    padding: 4%;
+    color: white;
+    text-shadow: 0px 0px 2px yellow;
+}
+
+/* ----------------------------- BUTTON AREA ------------------------- */
+.tabletopic-button {
+	visibility: hidden;
+    border-radius: 100%;
+    font-size: 4em;
+    outline: 0;
+    padding: 1.0% 2.0%;
+    box-shadow: 0px 0px 10px yellow;
+    border: 0;
+    -webkit-tap-highlight-color: rgba( 0,0,0,0);
+    -webkit-user-select: none;
+    user-select: none;
+    /* padding-top: 0em; */
+}
+.tabletopic-button-shade {
+    visibility: hidden;
+    width: 106%;
+    height: 106%;
+    background-color: rgba( 0, 0, 0, 0.7);
+    position: absolute;
+    top: -3%;
+    left: -3%;
+    -webkit-user-select: none;
+    user-select: none;
+}
+br {
+    -webkit-user-select: none;
+    user-select: none;
+}
+.tabletopic-button.go-button {
+    background: -webkit-linear-gradient(top, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 67%,#005700 83%,#002400 100%);
+    position: relative;
+}
+.tabletopic-button.go-button.selected {
+    background: -webkit-linear-gradient(top,#002400 0%,
+        #005700 17%,
+        #008a00 33%,
+        #52b152 67%,
+        #83c783 83%,
+        #b4ddb4 100%
+        );
+}
+.tabletopic-button.done-button {
+    background: -webkit-linear-gradient(top, #f6e6b4 0%,#ed9017 100%);
+    position: relative;
+}
+.tabletopic-button.done-button.selected {
+    background: -webkit-linear-gradient(top,#ed9017 0%, #f6e6b4 100%);
+}
+.tabletopic-button.inactive {
+    pointer-events: none;
+    border: 1px solid gray !important;
+    box-shadow: none !important;
+}
+.tabletopic-button.inactive .tabletopic-button-shade {
+    visibility: visible;
+}
+
+/* ----------------------------- TIMER AREA ------------------------- */
+.tabletopic-timer-area {
+	margin-top: 0.5in;
+}
+
+.tabletopic-timer-bar {
+    width: 60%;
+    height: 0.25in;
+    background-color: green;
+}
