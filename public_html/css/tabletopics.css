@@ -35,10 +35,9 @@ body, .tabletopic-background {
 	font-size: 0.25em;
 }
 
-.tabletopic-boilerplate blockquote {
+.tabletopic-boilerplate > blockquote {
 	border: 6px solid #999999;
 	border-radius: 16px;
-	height: 2em;
 	padding: 1em;
 }
 
