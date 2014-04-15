@@ -3,6 +3,13 @@
     src: url( BTTF.ttf);
 }
 
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+background-color: #000000 !important;
+ border-color: initial !important; 
+ color: initial !important; 
+ text-shadow: initial !important; 
+}
+
 body, .tabletopic-background {
     background-color: black;
 }
@@ -25,6 +32,10 @@ body, .tabletopic-background {
 	text-align:center;
 	color: #99cc00;
 	font-size: 4em;
+}
+.tabletopic-title {
+    font-family: 'Back to the future 2002';
+    letter-spacing: -0.075em;
 }
 
 .tabletopic-boilerplate {
@@ -64,14 +75,14 @@ body, .tabletopic-background {
 
 .tabletopic-message-area, .tabletopic-button-area, .tabletopic-timer-area {
     text-align: center;
-    min-height: 13em;
+    min-height: 16em;
 }
 
 /* ----------------------------- MESSAGE AREA ------------------------- */
 .tabletopic-message-area {
     border-radius: 16px;
-    border: 8px solid #222222;
-    margin: 1em;
+    border: 6px solid #111111;
+    margin: 0.5em;
 }
 .tabletopic-message {
     font-size: 2em;
@@ -84,27 +95,28 @@ body, .tabletopic-background {
 /* ----------------------------- BUTTON AREA ------------------------- */
 .tabletopic-button {
 	visibility: hidden;
-    border-radius: 100%;
+    border-radius: 16px;
+    width: 80%;
     font-size: 4em;
     outline: 0;
     padding: 1.0% 2.0%;
     box-shadow: 0px 0px 10px yellow;
     border: 0;
     -webkit-tap-highlight-color: rgba( 0,0,0,0);
-    -webkit-user-select: none;
-    user-select: none;
-    /* padding-top: 0em; */
+/*    -webkit-user-select: none;
+    user-select: none;*/
+/*     padding-top: 0em; */
 }
 .tabletopic-button-shade {
     visibility: hidden;
     width: 106%;
     height: 106%;
-    background-color: rgba( 0, 0, 0, 0.7);
+    background-color: rgba( 0, 0, 0, 0.8);
     position: absolute;
     top: -3%;
     left: -3%;
-    -webkit-user-select: none;
-    user-select: none;
+/*    -webkit-user-select: none;
+    user-select: none;*/
 }
 br {
     -webkit-user-select: none;
@@ -114,25 +126,14 @@ br {
     background: -webkit-linear-gradient(top, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 67%,#005700 83%,#002400 100%);
     position: relative;
 }
-.tabletopic-button.go-button.selected {
-    background: -webkit-linear-gradient(top,#002400 0%,
-        #005700 17%,
-        #008a00 33%,
-        #52b152 67%,
-        #83c783 83%,
-        #b4ddb4 100%
-        );
-}
+
 .tabletopic-button.done-button {
     background: -webkit-linear-gradient(top, #f6e6b4 0%,#ed9017 100%);
     position: relative;
 }
-.tabletopic-button.done-button.selected {
-    background: -webkit-linear-gradient(top,#ed9017 0%, #f6e6b4 100%);
-}
 .tabletopic-button.inactive {
     pointer-events: none;
-    border: 1px solid gray !important;
+    border: 1px solid #333333 !important;
     box-shadow: none !important;
 }
 .tabletopic-button.inactive .tabletopic-button-shade {
