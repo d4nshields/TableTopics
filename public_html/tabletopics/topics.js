@@ -37,7 +37,7 @@ define( {
     "Ask and it will be given to you; search, and you will find; knock and the door will be opened for you. ",
     "The only person you are destined to become is the person you decide to be. ",
     "Go confidently in the direction of your dreams.  Live the life you have imagined. ",
-    "Anyone who is capable of getting themselves made President should on no account be...",
+    "Anyone who is capable of getting themselves made President should on no account be allowed to do the job.",
     "Few things can help an individual more than to place responsibility on him, and to let him know that you trust him.  ",
     "Certain things catch your eye, but pursue only those that capture the heart. ",
     "Believe you can and you’re halfway there. ",
