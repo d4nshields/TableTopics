@@ -26,10 +26,10 @@ require.config( {
 
 define( ['require', 'playgame'], function( requre, PlayGame) {
     function DOMReady(f){
-      if (/(?!.*?compatible|.*?webkit)^mozilla|opera/i.test(navigator.userAgent)){ // Feeling dirty yet?
-        document.addEventListener("DOMContentLoaded", f, false);
-      }  else {
+      if( (document.readyState === "complete") || (!/(?!.*?compatible|.*?webkit)^mozilla|opera/i.test(navigator.userAgent))) {
         window.setTimeout(f,0);
+      }  else {
+        document.addEventListener("DOMContentLoaded", f, false);
       }
     }
     if( document.readyState === "complete") {
