@@ -1,4 +1,8 @@
-define( ['require', 'jquery', 'topics', 'jqueryMobile'], function( require, $, topics) {
+define( ['require', 'jquery', 'fastclick', 'topics', 'jqueryMobile'], 
+function( require, $, fastclick, topics) {
+    $.mobile.defaultPageTransition   = 'none';
+    $.mobile.defaultDialogTransition = 'none';
+    $.mobile.buttonMarkup.hoverDelay = 0;
     
     var topicNum = Math.floor( Math.random() * topics.topiclist.length);
     
@@ -12,42 +16,51 @@ define( ['require', 'jquery', 'topics', 'jqueryMobile'], function( require, $, t
     }
     var game_states = {
             INIT: function() {
-                    $('.tabletopic-button.go-button').removeClass('inactive')
+                    $('.tabletopic-button#tabletopic_proceed').removeClass('inactive')
                             .html( 'Start Turn').css( 'visibility', 'visible')
-                            .on( 'tap', function(evt) { $(evt.target).off( 'tap'); setState( 'START')});
-                    $('.tabletopic-button.done-button').addClass('inactive')
+                            .on( 'touchstart', function(evt) { 
+                                $(evt.target)
+                                    .off( 'touchstart');setState( 'START');});
+                    $('.tabletopic-button#tabletopic_done').addClass('inactive')
                             .html( 'Done Speech').css( 'visibility', 'visible')
                             .append( '<div class="tabletopic-button-shade"></div>');
                     clearTopic();
                     $('.tabletopic-splash').fadeOut( 2000);
             },
             START: function() {
-                    $('.tabletopic-button.go-button').removeClass('inactive')
+                    $('.tabletopic-button#tabletopic_proceed')
+                            .removeClass('inactive')
                             .html( 'Begin Speech')
-                            .on( 'tap', function(evt) { $(evt.target).off( 'tap'); setState( 'TIMING')});
-                    $('.tabletopic-button.done-button').addClass('inactive')
+                            .on( 'touchstart', function(evt) { 
+                                $(evt.target)
+                                    .off( 'touchstart');setState( 'TIMING');});
+                    $('.tabletopic-button#tabletopic_done').addClass('inactive')
                             .html( 'Done Speech')
                             .append( '<div class="tabletopic-button-shade"></div>')
-                            .off( 'tap');
+                            .off( 'touchstart');
                     displayTopic();
             },
             TIMING: function() {
-                    $('.tabletopic-button.go-button').addClass('inactive')
+                    $('.tabletopic-button#tabletopic_proceed').addClass('inactive')
                             .append( '<div class="tabletopic-button-shade"></div>')
-                            .off( 'tap');
-                    $('.tabletopic-button.done-button').removeClass('inactive')
+                            .off( 'touchstart');
+                    $('.tabletopic-button#tabletopic_done').removeClass('inactive')
                             .html( 'Done Speech')
-                            .on( 'tap', function(evt) { $(evt.target).off( 'tap'); setState( 'REPORT')});
+                            .on( 'touchstart', function(evt) { 
+                                $(evt.target)
+                                    .off( 'touchstart');setState( 'REPORT');});
                     startTimer();
             },
             REPORT: function() {
                     stopTimer();
-                    $('.tabletopic-button.go-button').removeClass('inactive')
+                    $('.tabletopic-button#tabletopic_proceed').removeClass('inactive')
                             .html( 'Next Person')
-                            .on( 'tap', function(evt) { $(evt.target).off( 'tap'); setState( 'START')});
-                    $('.tabletopic-button.done-button').addClass('inactive')
+                            .on( 'touchstart', function(evt) { 
+                                $(evt.target)
+                                    .off( 'touchstart');setState( 'START');});
+                    $('.tabletopic-button#tabletopic_done').addClass('inactive')
                             .append( '<div class="tabletopic-button-shade"></div>')
-                            .off( 'tap');
+                            .off( 'touchstart');
                     clearTopic();
             }
     };
@@ -57,7 +70,8 @@ define( ['require', 'jquery', 'topics', 'jqueryMobile'], function( require, $, t
             game_states[current_state].call( this);
     }
     function main() {
-            window.setTimeout( function() { setState( 'INIT'); }, 1000*0);
+        fastclick.attach( document.body);
+        window.setTimeout( function() { setState( 'INIT'); }, 1000*0);
     }
     function startTimer() {
             $('.tabletopicapp .tabletopic-timer-area').append( '<li>starting timer</li>');
