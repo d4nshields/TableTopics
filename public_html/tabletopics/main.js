@@ -3,7 +3,8 @@ require.config( {
         'jquery'                : '../js/jquery-1.11.0.min',
         'jqueryMobile'          : '../js/jquery-mobile/jquery.mobile.custom.min',
         'backbone'              : '../js/backbone.js/backbone',
-        'underscore'            : '../js/underscore.js/underscore'
+        'underscore'            : '../js/underscore.js/underscore',
+        'fastclick'             : '../js/fastclick'
     },
     shim: {
         'jquery': {
