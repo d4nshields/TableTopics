@@ -1,31 +1,31 @@
 require.config( {
     paths: {
-        'jquery'                : '../js/jquery-1.11.0.min',
-        'jqueryMobile'          : '../js/jquery-mobile/jquery.mobile.custom.min',
         'backbone'              : '../js/backbone.js/backbone',
         'underscore'            : '../js/underscore.js/underscore',
         'fastclick'             : '../js/fastclick'
     },
     shim: {
-        'jquery': {
-            exports: '$'
-        },
         'backbone': {
             //These script dependencies should be loaded before loading
             //backbone.js
-            deps: ['underscore', 'jquery'],
+            deps: ['underscore'],
             //Once loaded, use the global 'Backbone' as the
             //module value.
             exports: 'Backbone'
         },
         'underscore': {
             exports: '_'
-        },
-        'jqueryMobile': ['jquery']
+        }
     }
 });
 
-define( ['require', 'playgame'], function( requre, PlayGame) {
+define( ['require', 'playgame', 'topics'], function( requre, PlayGame, topics) {
+    $.mobile.defaultPageTransition   = 'none';
+    $.mobile.defaultDialogTransition = 'none';
+    $.mobile.buttonMarkup.hoverDelay = 0;
+    $.support.cors = true;
+    $.mobile.allowCrossDomainPages = true;
+    
     function DOMReady(f){
       if( (document.readyState === "complete") || (!/(?!.*?compatible|.*?webkit)^mozilla|opera/i.test(navigator.userAgent))) {
         window.setTimeout(f,0);
