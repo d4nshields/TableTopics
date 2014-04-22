@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
         <link rel="stylesheet" href="css/normalize.css">
-        <!-- link rel="stylesheet" href="css/main.css"  -->
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="js/jquery-mobile/jquery.mobile.css">
         <link rel="stylesheet" href="css/tabletopics.css">
-        <link rel="stylesheet" href="js/jquery-mobile/jquery.mobile-1.4.2.min.css">
         <script src="js/helper.js"></script>
         <script src="js/jquery-1.11.0.min.js"></script>
         <script src="js/jquery-mobile/jquery.mobile.js"></script>
@@ -15,6 +15,84 @@
     </head>
     <body class="tabletopic-background">
 		
+<div id="splashpage" data-role="page">
+    <div class="tabletopic-splash">
+        <div class="tabletopic-banner">
+            <div class='tabletopic-title'>TABLE<br>
+                topics</div>
+            <div style="display:inline-block;font-family: Arial;">
+                <img style="height:2.5em;" src="img/ic_launcher.png">
+                Android</div>
+            <div class="tabletopic-boilerplate">
+                <blockquote>
+                    Design/Programming: Dan Shields<br>
+                    Toastmasters club: #988094, a.k.a. 'Atria on Sheppard'
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+        
+        
+        
+<div id="tabletopicspage" data-role="page">
+        <div data-role="popup" id="setupForm" style="padding:10px 20px;height:4.5in;width:4in;">
+            <form>
+                    <h2>TableTopics Set-up:</h2>
+                    <h3>Choose a topic theme:</h3>
+                        <select name="select-topic-theme" id="select-topic-theme" data-native-menu="true" tabindex="1">
+                        </select>
+                    <h3>How many speakers?</h3>
+                        <select name="select-num-speakers" id="select-num-speakers" data-native-menu="true" tabindex="2">
+                            <option value="1">1 speakers (approx. 2 mins.)</option>
+                            <option value="2">2 speakers (approx. 4 mins.)</option>
+                            <option value="3">3 speakers (approx. 6 mins.)</option>
+                            <option value="4">4 speakers (approx. 8 mins.)</option>
+                            <option value="5">5 speakers (approx. 10 mins.)</option>
+                            <option value="6">6 speakers (approx. 12 mins.)</option>
+                            <option value="7">7 speakers (approx. 14 mins.)</option>
+                            <option value="8">8 speakers (approx. 16 mins.)</option>
+                            <option value="9">9 speakers (approx. 18 mins.)</option>
+                            <option value="10">10 speakers (approx. 20 mins.)</option>
+                        </select>
+
+                    <button type="submit" id="setupReady" data-theme="a" data-corners="true" class=" ui-btn ui-btn-b ui-shadow ui-corner-all">Ready to start &gt;</button>
+            </form>
+        </div>
+    
+    
+    
+    <div class="tabletopicapp" style="position: absolute; top: 0px; left: 0px;width:100%;">
+        <div class="tabletopic-message-area">
+            <div class="tabletopic-message">
+            </div>
+        </div>
+        <div class="tabletopic-button-area">
+            <button id='tabletopic_proceed' class="tabletopic-button go-button" style="width: 60%;margin: 0 auto;" >
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </button><br><br>
+            <button id='tabletopic_done' class="tabletopic-button done-button" style="width: 60%;margin: 0 auto;" >
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </button>
+        </div>
+        <div class="tabletopic-timer-area">
+            <div id="timer"></div>
+        </div>
+    </div>
+    
+
+</div>
+<!-- ***************************************************************** -->
+<div id="reportspage" data-role="page">
+    <h2 style="color:#A4C739;">Timer's Report:</h2>
+    <p class="timers-report" style="color:#A4C739;"></p>
+    <br>
+    <button id="restart_app" class="tabletopic-button" style="width:66%;margin: 0 auto;">
+        Play Again
+    </button>
+</div>
+<!-- ***************************************************************** -->
+
         <!-- Add your site or application content here -->
         <script type="text/javascript">
 		var _gaq = _gaq || [];
