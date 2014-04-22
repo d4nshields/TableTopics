@@ -102,7 +102,7 @@ select, textarea {
 
 /* ----------------------------- BUTTON AREA ------------------------- */
 .tabletopic-button {
-	visibility: hidden;
+	/* visibility: hidden; */
     border-radius: 16px;
     width: 80%;
     
@@ -118,12 +118,12 @@ select, textarea {
 }
 .tabletopic-button-shade {
     visibility: hidden;
-    width: 106%;
-    height: 106%;
+    width: 108%;
+    height: 108%;
     background-color: rgba( 0, 0, 0, 0.8);
     position: absolute;
-    top: -3%;
-    left: -3%;
+    top: -4%;
+    left: -4%;
 /*    -webkit-user-select: none;
     user-select: none;*/
 }
@@ -149,6 +149,10 @@ br {
     visibility: visible;
 }
 
+.tabletopic-button#restart_app {
+    background: -webkit-linear-gradient(top, #f6e6b4 0%,#ed9017 100%);
+    position: relative;
+}
 /* ----------------------------- TIMER AREA ------------------------- */
 .tabletopic-timer-area {
 	/* margin-top: 0.5in; */
@@ -173,4 +177,8 @@ br {
 
 #timer.stopped {
     background-color: white;
+}
+
+.report-data > tr > td {
+    vertical-align: top;
 }
