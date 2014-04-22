@@ -33,9 +33,5 @@ define( ['require', 'playgame', 'topics'], function( requre, PlayGame, topics) {
         document.addEventListener("DOMContentLoaded", f, false);
       }
     }
-    if( document.readyState === "complete") {
-        PlayGame.main();
-    } else {
-        DOMReady( PlayGame.main);
-    }
+    DOMReady( PlayGame.main);
 });
