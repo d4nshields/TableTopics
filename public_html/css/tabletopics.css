@@ -79,7 +79,7 @@ select, textarea {
 }
 
 .tabletopic-message-area, .tabletopic-button-area, .tabletopic-timer-area {
-    text-align: center;
+    /* text-align: center; */
 }
 
 .tabletopic-message-area {
@@ -155,30 +155,30 @@ br {
 }
 /* ----------------------------- TIMER AREA ------------------------- */
 .tabletopic-timer-area {
-	/* margin-top: 0.5in; */
-}
-
-.tabletopic-timer-bar {
-    width: 60%;
-    height: 0.25in;
-    background-color: green;
-}
-
-#timer {
-    width: 4em;
-    height: 4em;
-    border-radius: 100%;
-    border: 1px solid black;
-    margin: 0 auto;
-}
-#timer.started {
-    background-color: green;
-}
-
-#timer.stopped {
-    background-color: white;
+	background-color: white;
+        border-radius: 16px;
 }
 
 .report-data > tr > td {
     vertical-align: top;
 }
+
+            
+.stopwatch {
+    z-index: 1;
+}
+
+.stopwatchArm {
+    z-index: 10;
+    position: absolute;
+    top: 339px;
+    left: 263px;
+    -webkit-transform-origin: 14px 14px;
+    -webkit-transform: rotate( -90deg);
+    -webkit-transition-timing-function: linear;
+    transition: 0.1s;
+}
+.stopwatch-container {
+    -webkit-transform: scale(0.75);
+}
+

@@ -190,7 +190,7 @@ function( require, fastclick, topics) {
         var deg = -90 + elapsed*360/(60*1000);
         $('.stopwatchArm').css( {
             '-webkit-transform': 'rotate('+deg+'deg)',
-            'transition': '0s'
+            'transition': '0.1s'
         });
         if( elapsed > 90*1000) {
             $('.tabletopic-timer-area').css( 'background-color', 'red');
