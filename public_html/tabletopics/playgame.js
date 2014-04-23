@@ -41,6 +41,7 @@ function( require, fastclick, topics) {
                     
             },
             START: function() {
+                    resetTimer();
                     $('.tabletopic-button#tabletopic_proceed')
                             .removeClass('inactive')
                             .html( 'Begin Speech')
@@ -181,9 +182,41 @@ function( require, fastclick, topics) {
         }, 1500);
     }
     var timestamp;
+    var baseTime = (new Date()).getTime();
+    var tick_id;
+    
+    function tick() {
+        var elapsed = (new Date()).getTime() - baseTime;
+        var deg = -90 + elapsed*360/(60*1000);
+        $('.stopwatchArm').css( {
+            '-webkit-transform': 'rotate('+deg+'deg)',
+            'transition': '0s'
+        });
+        if( elapsed > 90*1000) {
+            $('.tabletopic-timer-area').css( 'background-color', 'red');
+        } else if( elapsed > 60*1000) {
+            $('.tabletopic-timer-area').css( 'background-color', 'yellow');
+        } else if( elapsed > 30*1000) {
+            $('.tabletopic-timer-area').css( 'background-color', 'green');
+        } else {
+            $('.tabletopic-timer-area').css( 'background-color', 'white');
+        }
+    }
+    
+    function resetTimer() {
+        $('.stopwatchArm').css( {
+            '-webkit-transform': 'rotate(-90deg)',
+            'transition': '0s'
+        });
+        $('.tabletopic-timer-area').css( 'background-color', 'white');
+        baseTime = (new Date()).getTime();
+        window.clearInterval( tick_id);
+    }
     function startTimer() {
         timestamp = (new Date()).getTime();
+        baseTime = (new Date()).getTime();
         $('#timer').removeClass('stopped').addClass( 'started');
+        tick_id = window.setInterval( tick, 100);
     }
     function stopTimer() {
         timing_data.push( {
@@ -193,6 +226,8 @@ function( require, fastclick, topics) {
             topicNum: topicNum
         });
         $('#timer').removeClass('started').addClass( 'stopped');
+        window.clearInterval( tick_id);
+        
     }
     return {
         'main': main

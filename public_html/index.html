@@ -13,7 +13,7 @@
         <script src="js/jquery-mobile/jquery.mobile.js"></script>
         <script data-main="tabletopics/main" src="tabletopics/require.js"></script>
     </head>
-    <body class="tabletopic-background">
+    <body class="tabletopic-background" style="overflow:hidden;">
 		
 <div id="splashpage" data-role="page">
     <div class="tabletopic-splash">
@@ -75,8 +75,11 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </button>
         </div>
-        <div class="tabletopic-timer-area">
-            <div id="timer"></div>
+        <div class="tabletopic-timer-area" style="margin: 0 auto;width:419px;height:530px;">
+            <div class="stopwatch-container" style="position:relative;top:-72px;left:-68px;width:558px;">
+                <img class="stopwatch" src="img/stop-watch-icon.png" />
+                <img class="stopwatchArm" src="img/stop-watch-arm.png" />
+            </div>
         </div>
     </div>
     
