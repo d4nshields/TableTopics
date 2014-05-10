@@ -3,6 +3,11 @@
     src: url( BTTF.ttf);
 }
 
+[data-role=page] {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+
 .ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
 background-color: #000000 !important;
  border-color: initial !important; 
@@ -86,6 +91,24 @@ select, textarea {
     min-height: 16em;
 }
 
+/* ----------------------------- SETUP AREA ------------------------- */
+.tt-form-title {
+    font-size: 2em;
+    color: green;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: normal;
+}
+
+.tt-form-label {
+    font-size: 1.75em;
+    color: #a4c739;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: normal;
+}
+
+
 /* ----------------------------- MESSAGE AREA ------------------------- */
 .tabletopic-message-area {
     border-radius: 16px;
@@ -156,7 +179,14 @@ br {
 /* ----------------------------- TIMER AREA ------------------------- */
 .tabletopic-timer-area {
 	background-color: white;
-        border-radius: 16px;
+        
+	/* border-radius: 16px; */
+        position: relative;
+        
+	outline: #737373 inset 5px;
+	-webkit-transform: scale(0.3109318996415771); 
+	-webkit-transform-origin: top;
+	padding: 8px;
 }
 
 .report-data > tr > td {
@@ -179,6 +209,6 @@ br {
     transition: 0.1s;
 }
 .stopwatch-container {
-    -webkit-transform: scale(0.75);
+    margin: 0 auto;
 }
 

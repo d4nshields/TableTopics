@@ -1,16 +1,43 @@
 define( ['require', 'fastclick', 'topics'], 
 function( require, fastclick, topics) {
     
+    $('#debug-localstorage').html( window.localStorage.getItem( 'whatever'));
+    window.localStorage.setItem( 'whatever', 'random value: '+Math.random());
+    
     var viewport_height = $(window).height();
     var viewport_width = $(window).width();
     var selectedTopic = Object.keys(topics.topicsDef)[0];
     var topicNum = Math.floor( Math.random() * topics.topicsDef[selectedTopic].length);
-    var num_speakers = 0;
+    var setup = {
+        num_speakers: 3,
+        target_length: 1
+    };
+    var timing = {
+        '1': {
+            gogreen: 30,
+            goyellow: 45,
+            gored: 60
+        },
+        '2': {
+            gogreen: 60,
+            goyellow: 1.5*60,
+            gored: 2*60
+        },
+        '3': {
+            gogreen: 2.0*60,
+            goyellow: 2.5*60,
+            gored: 3*60
+        },
+        '4': {
+            gogreen: 3.0*60,
+            goyellow: 3.5*60,
+            gored: 4.0*60
+        }
+    };
     var speaker_num = 1;
     var timing_data=[];
     
     function displayTopic() {
-            console.log( 'displayTopic()');
             topicNum = (topicNum+1) % topics.topicsDef[selectedTopic].length;
             $('.tabletopic-message').html( topics.topicsDef[selectedTopic][topicNum]);
     }
@@ -35,7 +62,7 @@ function( require, fastclick, topics) {
                                     .off( 'touchstart');setState( 'START');
                                 evt.preventDefault();});
                     $('.tabletopic-button#tabletopic_done').addClass('inactive')
-                            .html( 'Done Speech').css( 'visibility', 'visible')
+                            .html( 'Stop Self-timer').css( 'visibility', 'visible')
                             .append( '<div class="tabletopic-button-shade"></div>');
                     nextPlayerGetReady();
                     
@@ -44,13 +71,13 @@ function( require, fastclick, topics) {
                     resetTimer();
                     $('.tabletopic-button#tabletopic_proceed')
                             .removeClass('inactive')
-                            .html( 'Begin Speech')
+                            .html( 'Start Self-timer')
                             .on( 'touchstart', function(evt) { 
                                 $(evt.target)
                                     .off( 'touchstart');setState( 'TIMING');
                                 evt.preventDefault();});
                     $('.tabletopic-button#tabletopic_done').addClass('inactive')
-                            .html( 'Done Speech')
+                            .html( 'Stop Self-timer')
                             .append( '<div class="tabletopic-button-shade"></div>')
                             .off( 'touchstart');
                     displayTopic();
@@ -60,7 +87,7 @@ function( require, fastclick, topics) {
                             .append( '<div class="tabletopic-button-shade"></div>')
                             .off( 'touchstart');
                     $('.tabletopic-button#tabletopic_done').removeClass('inactive')
-                            .html( 'Done Speech')
+                            .html( 'Stop Self-timer')
                             .on( 'touchstart', function(evt) { 
                                 $(evt.target)
                                     .off( 'touchstart');setState( 'REPORT');
@@ -69,7 +96,7 @@ function( require, fastclick, topics) {
             },
             REPORT: function() {
                     stopTimer();
-                    if( speaker_num >= num_speakers) {
+                    if( speaker_num >= setup.num_speakers) {
                         setState( 'FINISH');
                     } else {
                         $('.tabletopic-button#tabletopic_proceed').removeClass('inactive')
@@ -157,33 +184,31 @@ function( require, fastclick, topics) {
                                 .html( fixTopicSelect)
                                 .selectmenu()
                                 .selectmenu("refresh", true);
-                        $.mobile.pageContainer.pagecontainer( "change", "#tabletopicspage", {
+                        $.mobile.pageContainer.pagecontainer( "change", "#setuppage", {
                             transition: 'fade'
-                        }).find( '#setupForm').popup({
-                            dismissible: false,
-                            transition: "pop",
-                            positionTo: "window"
-                        }).popup( "open");
-                        $('#setupForm-popup').css( {
-                            top: (viewport_height-$('#setupForm').height())/2+'px',
-                            left: (viewport_width-$('#setupForm').width())/2+'px'
                         });
 
-                        $("#setupForm #setupReady").on( 'click', function(evt) {
-                            num_speakers = parseInt( $("#setupForm #select-num-speakers").val());
-                            selectedTopic = $("#setupForm #select-topic-theme option:selected").val();
-                            console.log( "setting num_speakers="+num_speakers);
-                            $('#setupForm').popup("close");
+                        $("#setuppage #setupReady").on( 'click', function(evt) {
+                            setup.num_speakers = parseInt( $("#setuppage #select-num-speakers").val());
+                            setup.target_length = parseInt( $("#setuppage #select-targetspeakinglength").val())
+                            selectedTopic = $("#setuppage #select-topic-theme option:selected").val();
+                            $.mobile.pageContainer.pagecontainer( "change", "#tabletopicspage", {
+                                transition: 'fade'
+                            });
                             setState( 'INIT');
                             evt.preventDefault();
                             return false;
                         });
 //                    });
-        }, 1500);
+        }, 500);
     }
     var timestamp;
     var baseTime = (new Date()).getTime();
     var tick_id;
+    
+    $('.tabletopic-timer-area').css ({
+        '-webkit-transform': 'scale('+(0.5*$(window).width()/558)+')'
+    });
     
     function tick() {
         var elapsed = (new Date()).getTime() - baseTime;
@@ -192,11 +217,11 @@ function( require, fastclick, topics) {
             '-webkit-transform': 'rotate('+deg+'deg)',
             'transition': '0.1s'
         });
-        if( elapsed > 90*1000) {
+        if( elapsed >= timing[''+setup.target_length].gored*1000) {
             $('.tabletopic-timer-area').css( 'background-color', 'red');
-        } else if( elapsed > 60*1000) {
+        } else if( elapsed >= timing[''+setup.target_length].goyellow*1000) {
             $('.tabletopic-timer-area').css( 'background-color', 'yellow');
-        } else if( elapsed > 30*1000) {
+        } else if( elapsed >= timing[''+setup.target_length].gogreen*1000) {
             $('.tabletopic-timer-area').css( 'background-color', 'green');
         } else {
             $('.tabletopic-timer-area').css( 'background-color', 'white');

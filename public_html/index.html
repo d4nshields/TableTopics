@@ -29,39 +29,59 @@
                     Toastmasters club: #988094, a.k.a. 'Atria on Sheppard'
                 </blockquote>
             </div>
+            <div id="debug-localstorage"></div>
         </div>
     </div>
 </div>
         
+        <div id="setuppage" data-role="page">
+            <div class="padding" style="width:80%;height:80%;margin:10%;">
+                <form onload="formatSpeakersTimes();">
+                    <script type="text/javascript">
+                        function formatSpeakersTimes() {
+                            var targetLength = parseInt( $("#setuppage #select-targetspeakinglength option:selected").val());
+                            $('#select-num-speakers option').each( function( idx, elem) {
+                                $(elem).html( ''+(idx+1)+' speakers (approx. '+((idx+1)*targetLength)+' mins.)');
+                                $('#select-num-speakers').change();
+                            });
+                        }
+                    </script>
+                            
+                    <h2 class="tt-form-title"><u>TableTopics Set-up</u></h2>
+                        <button id="button-participants" data-theme="a" data-corners="true" class="tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all">Setup Participants &gt;</button>
+                        <button id="button-topiceditor" data-theme="a" data-corners="true" class="tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all">Edit Topics &gt;</button>
+                        <h3 class="tt-form-label">Choose a topic theme:</h3>
+                            <select name="select-topic-theme" id="select-topic-theme" data-native-menu="true" tabindex="1">
+                            </select>
+                        <h3 class="tt-form-label">Target Speaking Length:</h3>
+                            <select name="select-targetspeakinglength" id="select-targetspeakinglength" data-native-menu="true" tabindex="2"
+                                    onchange="formatSpeakersTimes();">
+                                <option value="1" selected="selected">1 minute</option>
+                                <option value="2">2 minutes</option>
+                                <option value="3">3 minutes</option>
+                                <option value="4">4 minutes</option>
+                            </select>
+                        <h3 class="tt-form-label">How many speakers?</h3>
+                            <select name="select-num-speakers" id="select-num-speakers" data-native-menu="true" tabindex="3">
+                                <option value="1">1 speakers (approx. 1 mins.)</option>
+                                <option value="2">2 speakers (approx. 2 mins.)</option>
+                                <option value="3" selected="selected">3 speakers (approx. 3 mins.)</option>
+                                <option value="4">4 speakers (approx. 4 mins.)</option>
+                                <option value="5">5 speakers (approx. 5 mins.)</option>
+                                <option value="6">6 speakers (approx. 6 mins.)</option>
+                                <option value="7">7 speakers (approx. 7 mins.)</option>
+                                <option value="8">8 speakers (approx. 8 mins.)</option>
+                                <option value="9">9 speakers (approx. 9 mins.)</option>
+                                <option value="10">10 speakers (approx. 10 mins.)</option>
+                            </select>
+
+                        <button type="submit" id="setupReady" data-theme="a" data-corners="true" class="tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all" style="position:absolute;bottom:0.0125in;width:80%;margin:0 auto;">Ready to start &gt;</button>
+                </form>
+            </div>
+        </div>
         
         
 <div id="tabletopicspage" data-role="page">
-        <div data-role="popup" id="setupForm" style="padding:10px 20px;height:4.5in;width:4in;">
-            <form>
-                    <h2>TableTopics Set-up:</h2>
-                    <h3>Choose a topic theme:</h3>
-                        <select name="select-topic-theme" id="select-topic-theme" data-native-menu="true" tabindex="1">
-                        </select>
-                    <h3>How many speakers?</h3>
-                        <select name="select-num-speakers" id="select-num-speakers" data-native-menu="true" tabindex="2">
-                            <option value="1">1 speakers (approx. 2 mins.)</option>
-                            <option value="2">2 speakers (approx. 4 mins.)</option>
-                            <option value="3">3 speakers (approx. 6 mins.)</option>
-                            <option value="4">4 speakers (approx. 8 mins.)</option>
-                            <option value="5">5 speakers (approx. 10 mins.)</option>
-                            <option value="6">6 speakers (approx. 12 mins.)</option>
-                            <option value="7">7 speakers (approx. 14 mins.)</option>
-                            <option value="8">8 speakers (approx. 16 mins.)</option>
-                            <option value="9">9 speakers (approx. 18 mins.)</option>
-                            <option value="10">10 speakers (approx. 20 mins.)</option>
-                        </select>
-
-                    <button type="submit" id="setupReady" data-theme="a" data-corners="true" class=" ui-btn ui-btn-b ui-shadow ui-corner-all">Ready to start &gt;</button>
-            </form>
-        </div>
-    
-    
-    
     <div class="tabletopicapp" style="position: absolute; top: 0px; left: 0px;width:100%;">
         <div class="tabletopic-message-area">
             <div class="tabletopic-message">
@@ -70,13 +90,13 @@
         <div class="tabletopic-button-area">
             <button id='tabletopic_proceed' class="tabletopic-button go-button" style="width: 60%;margin: 0 auto;" >
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </button><br><br>
+            </button><br>
             <button id='tabletopic_done' class="tabletopic-button done-button" style="width: 60%;margin: 0 auto;" >
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </button>
         </div>
-        <div class="tabletopic-timer-area" style="margin: 0 auto;width:419px;height:530px;">
-            <div class="stopwatch-container" style="position:relative;top:-72px;left:-68px;width:558px;">
+        <div class="tabletopic-timer-area" style="margin: 10px auto;">
+            <div class="stopwatch-container" style="position:relative;width:558px;height:658px;">
                 <img class="stopwatch" src="img/stop-watch-icon.png" />
                 <img class="stopwatchArm" src="img/stop-watch-arm.png" />
             </div>
