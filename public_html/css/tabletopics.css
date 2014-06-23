@@ -8,6 +8,11 @@
     overflow-y: hidden !important;
 }
 
+u {
+    border-bottom: 1px dotted;
+    text-decoration: none;    
+}
+
 .ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
 background-color: #000000 !important;
  border-color: initial !important; 
@@ -42,10 +47,20 @@ select, textarea {
 	text-align:center;
 	color: #99cc00;
 	font-size: 4em;
+    text-shadow:
+        -1px -1px 2px #333,  
+         1px -1px 2px #333,
+        -1px 1px 2px #333,
+         1px 1px 2px #333;
 }
 .tabletopic-title {
     font-family: 'Back to the future 2002';
     letter-spacing: -0.075em;
+    text-shadow:
+        -1px -1px 2px #333,  
+         1px -1px 2px #333,
+        -1px 1px 2px #333,
+         1px 1px 2px #333;
 }
 
 .tabletopic-boilerplate {
@@ -54,6 +69,7 @@ select, textarea {
 	width: 100%;
 	text-align: left;
 	font-size: 0.25em;
+        text-shadow: none;
 }
 
 .tabletopic-boilerplate > blockquote {
@@ -108,6 +124,13 @@ select, textarea {
     font-style: normal;
 }
 
+.tt-editor-row {
+    font-size: 1.0rem;
+    color: yellow;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: normal;
+}
 
 /* ----------------------------- MESSAGE AREA ------------------------- */
 .tabletopic-message-area {
@@ -187,6 +210,7 @@ br {
 	-webkit-transform: scale(0.3109318996415771); 
 	-webkit-transform-origin: top;
 	padding: 8px;
+        min-height: 6in;
 }
 
 .report-data > tr > td {
@@ -212,3 +236,6 @@ br {
     margin: 0 auto;
 }
 
+.stopwatch-container.hidden {
+    display: none;
+}

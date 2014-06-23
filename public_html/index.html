@@ -11,6 +11,10 @@
         <script src="js/helper.js"></script>
         <script src="js/jquery-1.11.0.min.js"></script>
         <script src="js/jquery-mobile/jquery.mobile.js"></script>
+        <script src="js/underscore.js/underscore.js"></script>
+        <script src="js/backbone.js/backbone.js"></script>
+        <script src="js/backbone.js/backbone-websql.js"></script>
+        <script src="js/hallo.js"></script>
         <script data-main="tabletopics/main" src="tabletopics/require.js"></script>
     </head>
     <body class="tabletopic-background" style="overflow:hidden;">
@@ -21,7 +25,7 @@
             <div class='tabletopic-title'>TABLE<br>
                 topics</div>
             <div style="display:inline-block;font-family: Arial;">
-                <img style="height:2.5em;" src="img/ic_launcher.png">
+                <img style="height:2.5em;vertical-align:middle;" src="img/ic_launcher.png">
                 Android</div>
             <div class="tabletopic-boilerplate">
                 <blockquote>
@@ -29,43 +33,42 @@
                     Toastmasters club: #988094, a.k.a. 'Atria on Sheppard'
                 </blockquote>
             </div>
-            <div id="debug-localstorage"></div>
         </div>
     </div>
 </div>
         
         <div id="setuppage" data-role="page">
             <div class="padding" style="width:80%;height:80%;margin:10%;">
-                <form onload="formatSpeakersTimes();">
+                <form class='tt-settings-form'>
                     <script type="text/javascript">
-                        function formatSpeakersTimes() {
-                            var targetLength = parseInt( $("#setuppage #select-targetspeakinglength option:selected").val());
-                            $('#select-num-speakers option').each( function( idx, elem) {
-                                $(elem).html( ''+(idx+1)+' speakers (approx. '+((idx+1)*targetLength)+' mins.)');
-                                $('#select-num-speakers').change();
-                            });
-                        }
                     </script>
                             
                     <h2 class="tt-form-title"><u>TableTopics Set-up</u></h2>
-                        <button id="button-participants" data-theme="a" data-corners="true" class="tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all">Setup Participants &gt;</button>
-                        <button id="button-topiceditor" data-theme="a" data-corners="true" class="tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all">Edit Topics &gt;</button>
-                        <h3 class="tt-form-label">Choose a topic theme:</h3>
-                            <select name="select-topic-theme" id="select-topic-theme" data-native-menu="true" tabindex="1">
+                        <button id="buttonAdvanced" data-theme="a" data-corners="true" 
+                                class="tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all"
+                                >Advanced Settings &gt;</button>
+                    <label class="tt-form-label" for="select-play-mode"><u>Casual</u> play or <u>Strict</u> Toastmasters play:</label>
+                            <select name="select-play-mode" id="select-play-mode" data-native-menu="true" tabindex="1"
+                                    >
+                                <option value="casual" selected="selected">Casual play</option>
+                                <option value="strict">Strict Toastmasters meeting</option>
                             </select>
-                        <h3 class="tt-form-label">Target Speaking Length:</h3>
-                            <select name="select-targetspeakinglength" id="select-targetspeakinglength" data-native-menu="true" tabindex="2"
-                                    onchange="formatSpeakersTimes();">
+                        <label class="tt-form-label" for="select-topic-theme">Choose a topic theme:</label>
+                            <select name="select-topic-theme" id="select-topic-theme" data-native-menu="true" tabindex="2">
+                            </select>
+                        <label class="tt-form-label" for="select-speaker-time">Time for each speaker:</label>
+                            <select name="select-speaker-time" id="select-speaker-time" data-native-menu="true" tabindex="3"
+                                    >
                                 <option value="1" selected="selected">1 minute</option>
                                 <option value="2">2 minutes</option>
                                 <option value="3">3 minutes</option>
                                 <option value="4">4 minutes</option>
                             </select>
-                        <h3 class="tt-form-label">How many speakers?</h3>
-                            <select name="select-num-speakers" id="select-num-speakers" data-native-menu="true" tabindex="3">
+                        <label class="tt-form-label" for="select-num-speakers">How many speakers?</label>
+                            <select name="select-num-speakers" id="select-num-speakers" data-native-menu="true" tabindex="4">
                                 <option value="1">1 speakers (approx. 1 mins.)</option>
                                 <option value="2">2 speakers (approx. 2 mins.)</option>
-                                <option value="3" selected="selected">3 speakers (approx. 3 mins.)</option>
+                                <option value="3" selected="selected">3 speakers (approx. 0 mins.)</option>
                                 <option value="4">4 speakers (approx. 4 mins.)</option>
                                 <option value="5">5 speakers (approx. 5 mins.)</option>
                                 <option value="6">6 speakers (approx. 6 mins.)</option>
@@ -75,12 +78,58 @@
                                 <option value="10">10 speakers (approx. 10 mins.)</option>
                             </select>
 
-                        <button type="submit" id="setupReady" data-theme="a" data-corners="true" class="tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all" style="position:absolute;bottom:0.0125in;width:80%;margin:0 auto;">Ready to start &gt;</button>
+                        <button type="submit" id="setupReady" data-theme="a" data-corners="true" 
+                                class="tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all" 
+                                style="position:absolute;top:80%;width:80%;margin:0 auto;"
+                                >Ready to start &gt;</button>
                 </form>
             </div>
         </div>
         
-        
+        <div id="setupadvanced"  data-role="page">
+            <div class="padding" style="width:80%;height:80%;margin:10%;">
+                <h2 class="tt-form-title"><u>Advanced Settings</u></h2>
+                        <button id="buttonParticipants" data-theme="a" data-corners="true" 
+                                class="tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all"
+                                >Setup Participants &gt;</button>
+                        <button id="buttonTopicseditor" data-theme="a" data-corners="true" 
+                                class="tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all"
+                                >Edit Topics &gt;</button>
+
+                <button id="advancedgoback" data-theme="a" data-corners="true" 
+                        class="tt-goback tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all" 
+                        style="position:absolute;bottom:0.5in;width:80%;margin:0 auto;"
+                        >&lt; Back to Main</button>
+            </div>
+        </div>
+        <div id="setuptopics"  data-role="page">
+            <div class="widget-themeEditor padding" style="width:80%;height:80%;margin:10%;">
+                <h2 class="tt-form-title"><u>Topics Editor</u></h2>
+
+                <select name="select-topic-theme" id="edit-topic-theme" data-native-menu="true" tabindex="1"
+                        >
+                </select>
+                <button class="tt-themename-removeit">Remove Selected Theme</button>
+                <span class="tt-form-label">Edit theme name: </span>
+                <input class="tt-form-label tt-themename-editable"
+                       ></input>
+                <button id="topicsgoback" data-theme="a" data-corners="true" 
+                        class="tt-goback tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all" 
+                        style="position:absolute;bottom:0.5in;width:80%;margin:0 auto;"
+                        >&lt; Back To Advanced Settings</button>
+            </div>
+        </div>
+<div id="setupparticipants"  data-role="page">
+    <div class="padding" style="width:80%;height:80%;margin:10%;">
+        <h2 class="tt-form-title"><u>Setup Participants</u></h2>
+
+        <button id="participantsgoback" data-theme="a" data-corners="true" 
+                class="tt-goback tt-form-label ui-btn ui-btn-b ui-shadow ui-corner-all" 
+                style="position:absolute;bottom:0.5in;width:80%;margin:0 auto;"
+                >&lt; Back to Advanced Settings</button>
+    </div>
+</div>
+
 <div id="tabletopicspage" data-role="page">
     <div class="tabletopicapp" style="position: absolute; top: 0px; left: 0px;width:100%;">
         <div class="tabletopic-message-area">

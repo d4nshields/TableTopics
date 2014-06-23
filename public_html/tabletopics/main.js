@@ -1,25 +1,10 @@
 require.config( {
     paths: {
-        'backbone'              : '../js/backbone.js/backbone',
-        'underscore'            : '../js/underscore.js/underscore',
         'fastclick'             : '../js/fastclick'
-    },
-    shim: {
-        'backbone': {
-            //These script dependencies should be loaded before loading
-            //backbone.js
-            deps: ['underscore'],
-            //Once loaded, use the global 'Backbone' as the
-            //module value.
-            exports: 'Backbone'
-        },
-        'underscore': {
-            exports: '_'
-        }
     }
 });
 
-define( ['require', 'playgame', 'topics'], function( requre, PlayGame, topics) {
+define( ['playgame'], function( PlayGame) {
     $.mobile.defaultPageTransition   = 'none';
     $.mobile.defaultDialogTransition = 'none';
     $.mobile.buttonMarkup.hoverDelay = 0;
