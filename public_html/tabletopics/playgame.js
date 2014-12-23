@@ -16,9 +16,10 @@ function( fastclick, MainPageView) {
             el: 'body',
             configs: configs
         });
+        var _this=this;
         window.setTimeout( function() {
-            this.mainPageView.render();
-        }, 500);
+            _this.mainPageView.render();
+        }, 3500);
     }
     $('.tabletopic-timer-area').css ({
         '-webkit-transform': 'scale('+(0.5*$(window).width()/558)+')'

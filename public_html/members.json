@@ -1,0 +1,22 @@
+SetupMembers(
+    [
+        {
+            "name": "Dan Shields"
+        },
+        {
+            "name": "Lynn Picard"
+        },
+        {
+            "name": "Maxine Campbell"
+        },
+        {
+            "name": "Taylor Wales"
+        },
+        {
+            "name": "Tim Kwan"
+        },
+        {
+            "name": "Melissa Davidson"
+        }
+    ]
+);

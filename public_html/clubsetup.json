@@ -1,0 +1,10 @@
+Setup({
+    "TMI": {
+        "number": "988094",
+        "name": "Aspire Higher Toastmasters"
+    },
+    "Analytics": {
+        "acct": "UA-48191515-1",
+        "domain": "none"
+    }
+});
