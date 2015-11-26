@@ -1,0 +1,14 @@
+{
+  "short_name": "Table Topics App",
+  "name": "D4n's Amazing Table Topics WebApp",
+  "icons": [
+    {
+      "src": "img/ic_launcher.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}
